@@ -8,6 +8,8 @@ app.use(function(request, response, next) {
 });
 
 app.use('/', function(request, response) {
-	response.writeHead(200, {"Content-Type":"plain/text"});
+	response.writeHead(200, {"Content-Type":"text/plain"});
 	response.end("Hello, world!");
-}); 
+});
+
+app.listen(8000); 
