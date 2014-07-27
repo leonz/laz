@@ -1,7 +1,15 @@
 var express = require('express');
 var compress = require('compression');
+var hogan = require('hogan-express');
 
 var app = express();
+
+app.set('view engine', 'html');
+app.set('layout', 'layout');
+app.enable('view cache');
+app.engine('html', hogan);
+app.set('views', __dirname + '/views');
+
 app.use(compress());
 
 app.use(function(request, response, next) {
@@ -9,13 +17,30 @@ app.use(function(request, response, next) {
 	next();
 });
 
-// Get all static files
-app.use('/', express.static(__dirname + '/static'));
+app.use('/static', express.static(__dirname + '/static'));
 
-app.use('/', function(request, response) {
-	response.writeHead(200, {"Content-Type":"text/plain"});
-	response.write('Welcome to ' + request.path + '\n');
-	response.end("Hello, world!");
+app.get('/', function(req, res) {
+	res.render('layout', {
+		title: "Hello!",
+		partials: {
+			body: "index"
+		}
+	});
+});
+
+app.get('/about', function(req, res) {
+	res.render('layout', {
+		title: "About Me",
+		partials: {
+			body: "about"
+		}
+	});
+});
+
+
+app.use('/', function(req, res) {
+	res.writeHead(404, {"Content-Type":"text/plain"});
+	res.end("404 not found");
 });
 
 app.listen(8000); 

@@ -1,0 +1,16 @@
+{
+	"name": "lzaruvinsky",
+	"description": "Personal website for Leon Zaruvinsky",
+	"version": "0.0.1",
+	"private": "true",
+	"engines": {
+		"node": "latest",
+		"npm": "latest"
+	},
+	"dependencies": {
+		"express": "latest",
+		"compression": "latest",
+		"hogan-express": "latest"
+	},
+	"main": "app.js"
+}
