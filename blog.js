@@ -1,4 +1,4 @@
-var db = require('./db.js');
+var dbauth = require('./dbauth.js');
 
 function blog(req, res) {
 	res.write('You are now entering blog territory.\n');
