@@ -11,7 +11,7 @@
 		"express": "latest",
 		"compression": "latest",
 		"hogan-express": "latest",
-		"mongodb": "latest"
+		"mongojs": "latest"
 	},
 	"main": "app.js"
 }
