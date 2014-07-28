@@ -53,4 +53,6 @@ app.use('/', function(req, res) {
 	res.end("404 not found");
 });
 
-app.listen(8000); 
+var port = process.env.PORT || 8000;
+app.listen(port); 
+console.log('Server started on port ' + port);
