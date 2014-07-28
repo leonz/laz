@@ -26,16 +26,9 @@ app.get('/', function(req, res) {
 	res.render('layout', {
 		title: "Hello!",
 		partials: {
-			main: "main"
-		}
-	});
-});
-
-app.get('/about', function(req, res) {
-	res.render('layout', {
-		title: "About Me",
-		partials: {
-			main: "about"
+			header: "header-home",
+			main: "main",
+			script: "script"
 		}
 	});
 });

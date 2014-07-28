@@ -1,0 +1,28 @@
+<script>
+(function() {
+	var twitter = document.getElementById("twitter");
+	var tnote = document.getElementById("twitter-note");
+	var github = document.getElementById("github");
+	var gnote = document.getElementById("github-note");
+	var linkedin = document.getElementById("linkedin");
+	var lnote = document.getElementById("linkedin-note");
+
+	twitter.addEventListener("mouseover", function() {
+		tnote.setAttribute("class", "visible");
+		gnote.setAttribute("class", "hidden");
+		lnote.setAttribute("class", "hidden");
+	}, false);
+
+	github.addEventListener("mouseover", function() {
+		tnote.setAttribute("class", "hidden");
+		gnote.setAttribute("class", "visible");
+		lnote.setAttribute("class", "hidden");
+	}, false);
+
+	linkedin.addEventListener("mouseover", function() {
+		tnote.setAttribute("class", "hidden");
+		gnote.setAttribute("class", "hidden");
+		lnote.setAttribute("class", "visible");
+	}, false);
+})();
+</script>

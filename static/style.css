@@ -1,1 +1,109 @@
-/** This is a test to make sure that static content is served. **/
+body {
+	font: 20px "Open Sans";
+}
+
+a {
+	text-decoration: none;
+}
+
+header {
+	margin-left: 5%;
+	margin-bottom: 20px;
+	clear: both;
+}
+
+header h1 {
+	text-transform: uppercase;
+	font-weight: 700;
+	font-size: 70px;
+	margin: 0;
+}
+
+header h3 {
+	font-weight: 600;
+	font-style: italic;
+	font-size: 40px;
+	margin: 30px 0 -15px 0;
+}
+
+nav {
+	float: right;
+	margin-top: 10px;
+	margin-right: 3%;
+}
+
+nav ul {
+	text-align: right;
+	width: 100%;
+	margin: 0;
+}
+
+nav ul li {
+	float: left;
+	list-style: none;
+	margin-right: 20px;
+}
+
+nav a {
+	color: #000;
+}
+nav a:hover {
+	color: #777;
+}
+
+section {
+	margin: 0 5% 50px 5%;
+}
+
+
+footer {
+	text-align: center;
+	margin: 100px 0 20px 0;
+}
+
+footer cite {
+	font-style: normal;
+	font-size: 18px;
+	display: block;
+}
+
+.fa-4x {
+	margin-right: 20px;
+}
+
+.fa-4x:hover {
+	opacity: .8;
+}
+
+.mybbwebhost {
+	color: #145782;
+	font-weight: 700;
+}
+
+.bigredhacks {
+	color: #777;
+	font-weight: 700;
+}
+
+.bigredhacks span, .cornell {
+	color: #B31B1B;
+	font-weight: 700;
+}
+
+#github {
+	color: #000;
+}
+#linkedin {
+	color: #007bb6;
+}
+#twitter {
+	color: #00aced;
+}
+
+.hidden {
+	display: none;
+}
+.visible {
+	display: visible;
+}
+
