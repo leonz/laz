@@ -11,7 +11,7 @@ function blog(req, res) {
 			return;
 		}
 		console.log(records);
-	}
+	});
 
 }
 
