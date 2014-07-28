@@ -10,7 +10,8 @@
 	"dependencies": {
 		"express": "latest",
 		"compression": "latest",
-		"hogan-express": "latest"
+		"hogan-express": "latest",
+		"mongoose": "latest"
 	},
 	"main": "app.js"
 }
