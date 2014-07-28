@@ -2,6 +2,7 @@ var express = require('express');
 var compress = require('compression');
 var hogan = require('hogan-express');
 var blog = require('./blog');
+var contact = require('./contact');
 
 var app = express();
 
@@ -18,17 +19,14 @@ app.use(function(request, response, next) {
 	next();
 });
 
-
 // Serve static files first (JS, CSS, images)
 app.use('/static', express.static(__dirname + '/static'));
-
-// Serve site pages
 
 app.get('/', function(req, res) {
 	res.render('layout', {
 		title: "Hello!",
 		partials: {
-			body: "index"
+			main: "main"
 		}
 	});
 });
@@ -37,12 +35,15 @@ app.get('/about', function(req, res) {
 	res.render('layout', {
 		title: "About Me",
 		partials: {
-			body: "about"
+			main: "about"
 		}
 	});
 });
 
-// Serve the blog
+app.get('/contact', function(req, res) {
+	contact(req, res);
+});
+
 app.use('/blog', function(req, res) {
 	blog(req, res);
 });

@@ -1,12 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <head>
-<title>{{title}}</title>
+	<meta charset = "utf-8">
+	<title>{{title}}</title>
 
-<link rel="stylesheet" href="/static/style.css">
+	<link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
-{{> body}}
+<header>
+	<h1>Leon Zaruvinsky</h1>
+</header>
+
+<nav>
+	<ul>
+	<li><a href="/">Home</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/blog">Blog</a></li>
+	<li><a href="/contact">Contact</a></li>
+	</ul>
+</nav>
+
+<section>
+	{{> main}}
+</section>
+
+<footer>
+	<cite>&copy; 2014</cite>
+</footer>
+
 
 </body>
 </html>

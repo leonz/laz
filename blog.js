@@ -3,6 +3,8 @@ function blog(req, res) {
 	res.end('View path (for use in articles): ' + req.path);
 
 	var db = require('./dbauth.js')();
+	console.log("Database connection established");
+
 	db.blog.find({"color":"red"}, function(err, records) {
 		if (err) {
 			console.log("Database error");
