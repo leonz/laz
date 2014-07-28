@@ -2,7 +2,7 @@ function blog(req, res) {
 	res.write('You are now entering blog territory.\n');
 	res.end('View path (for use in articles): ' + req.path);
 
-	var db = require('./dbauth.js');
+	var db = require('./dbauth.js')();
 	db.blog.find({"color":"red"}, function(err, records) {
 		if (err) {
 			console.log("Database error");
