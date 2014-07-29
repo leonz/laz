@@ -33,7 +33,7 @@ app.get('/', function(req, res) {
 	});
 });
 
-app.get('/contact', function(req, res) {
+app.use('/contact', function(req, res) {
 	contact(req, res);
 });
 

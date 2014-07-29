@@ -1,5 +1,17 @@
 function contact(req, res) {
-	res.end("Welcome to the contact form");
+	if (req.method === 'POST') {
+		res.end("Form sent! Though not successfully, I haven't built that part yet :)");
+
+	} else {
+		res.render('layout', {
+			title: "Contact Me",
+			partials: {
+				header: "header",
+				main: "contact",
+			script: "contact-script"
+			}
+		});
+	}
 }
 
 module.exports = contact;
