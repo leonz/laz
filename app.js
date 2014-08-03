@@ -1,8 +1,9 @@
 var express = require('express');
 var compress = require('compression');
 var hogan = require('hogan-express');
-var blog = require('./blog');
 var contact = require('./contact');
+var blog = require('./blog');
+var publish = require('./publish');
 
 var app = express();
 
@@ -43,10 +44,14 @@ app.use('/blog', function(req, res) {
 	blog(req, res);
 });
 
+app.use('/publish', function(req, res) {
+	publish(req, res);
+});
+
 // If all else fails, 404
 app.use('/', function(req, res) {
 	res.writeHead(404, {"Content-Type":"text/plain"});
-	res.end("404 not found");
+	res.end("Sorry, there isn't anything here. Looks like you've hit a bad link (or are you snooping around?).");
 });
 
 var port = process.env.PORT || 8000;
