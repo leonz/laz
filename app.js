@@ -3,7 +3,6 @@ var compress = require('compression');
 var hogan = require('hogan-express');
 var blog = require('./blog');
 var contact = require('./contact');
-var path = require('path');
 
 var app = express();
 
@@ -21,10 +20,8 @@ app.use(function(request, response, next) {
 });
 
 // Serve static files first (JS, CSS, images)
-function static(dirname, age) {
-    return express.static(path.join(__dirname, dirname), { maxAge: age });
-}
-app.use('/static', static('/static', 2592000));
+var oneMonth = 86400000 * 30;
+app.use('/static', static('/static', { maxAge: oneMonth }));
 
 app.get('/', function(req, res) {
 	res.render('layout', {
