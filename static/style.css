@@ -118,3 +118,24 @@ footer cite {
 h2 {
 	margin: 50px 0 20px 0;
 }
+
+/** Contact form **/
+
+.light {
+        color: #777;
+}
+
+.valid {
+        border: 1px solid green;
+}
+
+.invalid {
+        border: 1px solid red;
+}
+
+#error {
+        color: red;
+}
+
+
+
