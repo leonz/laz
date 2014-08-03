@@ -24,7 +24,7 @@ app.use('/static', express.static(__dirname + '/static'));
 
 app.get('/', function(req, res) {
 	res.render('layout', {
-		title: "Hello!",
+		title: "Leon Zaruvinsky",
 		adj: "home",
 		partials: {
 			header: "header-home",

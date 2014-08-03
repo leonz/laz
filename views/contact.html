@@ -3,13 +3,134 @@
 <h2>Contact Me</h2>
 
 <form method="post" action="/contact" name="contact">
-<input type="text" value="Name" id="name" name="name"><br>
-<input type="text" value="Email" id="email" name="email"><br>
-<textarea id="message" name="message">Your message</textarea><br>
-<input type="text" value="What are my initials?" id="init" name="init"><br>
+<input type="text" value="Name" id="name" name="name" class="light"><br>
+<input type="text" value="Email" id="email" name="email" class="light"><br>
+<textarea id="message" name="message" class="light">Your message</textarea><br>
+<input type="text" value="What are my initials?" id="init" name="init" class="light"><br>
 <input type="submit" value="Send" id="send" name="send">
 </form>
 
+<p id="error"></p>
 </section>
+<style>
 
+.light {
+	color: #777;
+}
 
+.valid {
+	border: 1px solid green;
+}
+
+.invalid {
+	border: 1px solid red;
+}
+
+#error {
+	color: red;
+}
+</style>
+
+<script>
+// Form Validator
+(function () {
+
+	var checkName = false, checkEmail = false, checkMessage = false, checkInit = false;	
+
+	// General purpose validator for form fields
+	function validate(element, validator) {
+		if (validator(element.value)) {
+			element.classList.add('valid');
+			element.classList.remove('invalid');
+			return true;
+		} else {
+			element.classList.remove('valid');
+			element.classList.add('invalid');
+			return false;
+		}
+	}
+
+	var name = document.getElementById('name');
+	name.addEventListener('focus', function() {
+		if (name.value === 'Name') {
+			name.classList.remove('light');
+			name.value = '';
+		}
+	}, false);
+
+	name.addEventListener('blur', function() {
+		if (name.value === '') {
+			name.classList.add('light');
+			name.value = 'Name';
+		}
+		checkName = validate(name, function(str) {
+			return str !== 'Name' && str.length > 0;
+		});
+	}, false);
+
+	var email = document.getElementById('email');
+	email.addEventListener('focus', function() {
+		if (email.value === 'Email') {
+			email.classList.remove('light');
+			email.value = '';
+		}
+	}, false);
+
+	email.addEventListener('blur', function() {
+		if (email.value === '') {
+			email.classList.add('light');
+			email.value = 'Email';
+		}
+		checkEmail = validate(email, function (str) {
+			var pattern = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
+			return pattern.test(str);
+		});
+	}, false);
+
+	var message = document.getElementById('message');
+	message.addEventListener('focus', function() {
+		if (message.value === 'Your message') {
+			message.classList.remove('light');
+			message.value = '';
+		}
+	}, false);	
+
+	message.addEventListener('blur', function() {
+		if (message.value === '') {
+			message.classList.add('light');
+			message.value = 'Your message';
+		}
+		checkMessage = validate(message, function(str) {
+			return str !== 'Your message' && str.length > 0;
+		});
+	}, false);
+
+	var init = document.getElementById('init');
+	init.addEventListener('focus', function() {
+		if (init.value === 'What are my initials?') {
+			init.classList.remove('light');
+			init.value = '';
+		}
+	}, false);
+
+	init.addEventListener('blur', function() {
+		if (init.value === '') {
+			init.classList.add('light');
+			init.value = 'What are my initials?';
+		}
+		checkInit = validate(init, function(str) {
+			return str.toUpperCase() === 'LZ' || str.toUpperCase() === 'LAZ';
+		});
+	}, false);
+
+	document.getElementById('send').addEventListener('click', function(e) {
+		if (checkName && checkEmail && checkMessage && checkInit) {
+			// All clear, send!
+		} else {
+			document.getElementById('error').innerHTML = "Oops! It looks like something is wrong.  Try fixing the red boxes.";
+			e.preventDefault();
+		}
+	}, false);
+
+})();
+</script>

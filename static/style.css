@@ -17,7 +17,7 @@ header h1 {
 	font-size: 40px;
 }
 
-header .home {
+header #home {
 	font-size: 70px;
 	margin: 0;
 }
