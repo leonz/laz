@@ -1,3 +1,3 @@
 module.exports = function() {
-	return require('sendgrid')(SENDGRID_USER, SENDGRID_KEY);
+	return require('sendgrid')(process.env.SENDGRID_USER, process.env.SENDGRID_KEY);
 }
