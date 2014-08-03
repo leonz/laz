@@ -8,6 +8,7 @@
 		if (validator(element.value)) {
 			element.classList.add('valid');
 			element.classList.remove('invalid');
+			element.classList.remove('light');
 			return true;
 		} else {
 			element.classList.remove('valid');
@@ -91,7 +92,7 @@
 			if (init.value === 'What are my initials?') {
 				init.classList.add('invalid');
 			}
-			document.getElementById('error').innerHTML = "Oops! It looks like something is wrong.  Try fixing the red boxes.";
+			document.getElementById('error').innerHTML = "Hmm, something isn't right.  Try fixing the red boxes.";
 			e.preventDefault();
 		}
 	}, false);

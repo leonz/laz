@@ -107,22 +107,42 @@ footer cite {
 	color: #00aced;
 }
 
-.hidden {
-	display: none;
-}
-.visible {
-	display: visible;
-}
-
-
 h2 {
 	margin: 50px 0 20px 0;
 }
 
 /** Contact form **/
 
+input, textarea {
+	border: 1px solid #000;
+	font: 16px "Open Sans";
+	padding: 10px;
+	margin-bottom: 15px;
+	color: #000;
+	border-radius: 3px;
+}
+
+#name, #email, #message {
+	width: 300px;
+}
+
+#message {
+	height: 150px;
+}
+
+#send {
+	width: 100px;
+	padding: 5px;
+}
+
 .light {
-        color: #777;
+        color: #444;
+	border: 1px solid #444;
+}
+
+.light:focus {
+	color: #000;
+	border: 1px solid #000;
 }
 
 .valid {

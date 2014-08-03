@@ -60,7 +60,7 @@ function contact(req, res) {
 					email: input["email"],
 					message: input["message"],
 					init: input["init"],
-					error: "Oops!  Looks like something went wrong.  Please check to make sure all of the fields above are filled in and correct.",
+					error: "Hmm, something isn't right.  Make sure all of the fields above are filled in correctly.",
 					partials: {
 						header: "header",
 						main: "contact",
