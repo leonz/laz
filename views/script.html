@@ -1,28 +1,17 @@
 <script>
 (function() {
-	var twitter = document.getElementById("twitter");
-	var tnote = document.getElementById("twitter-note");
-	var github = document.getElementById("github");
-	var gnote = document.getElementById("github-note");
-	var linkedin = document.getElementById("linkedin");
-	var lnote = document.getElementById("linkedin-note");
+	var note = document.getElementById("note");
 
-	twitter.addEventListener("mouseover", function() {
-		tnote.setAttribute("class", "visible");
-		gnote.setAttribute("class", "hidden");
-		lnote.setAttribute("class", "hidden");
+	document.getElementById("twitter").addEventListener("mouseover", function() {
+		note.innerHTML = "Follow me on Twitter!";
 	}, false);
 
-	github.addEventListener("mouseover", function() {
-		tnote.setAttribute("class", "hidden");
-		gnote.setAttribute("class", "visible");
-		lnote.setAttribute("class", "hidden");
+	document.getElementById("github").addEventListener("mouseover", function() {
+		note.innerHTML = "Check out my projects on GitHub!";
 	}, false);
 
-	linkedin.addEventListener("mouseover", function() {
-		tnote.setAttribute("class", "hidden");
-		gnote.setAttribute("class", "hidden");
-		lnote.setAttribute("class", "visible");
+	document.getElementById("linkedin").addEventListener("mouseover", function() {
+		note.innerHTML = "View my resume on LinkedIn!"
 	}, false);
 })();
 </script>

@@ -28,7 +28,7 @@ app.get('/', function(req, res) {
 		adj: "home",
 		partials: {
 			header: "header-home",
-			main: "main",
+			main: "home",
 			script: "script"
 		}
 	});
