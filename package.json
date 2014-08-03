@@ -11,7 +11,8 @@
 		"express": "latest",
 		"compression": "latest",
 		"hogan-express": "latest",
-		"mongojs": "latest"
+		"mongojs": "latest",
+		"sendgrid": "1.1.1"
 	},
 	"main": "app.js"
 }

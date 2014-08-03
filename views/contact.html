@@ -3,13 +3,13 @@
 <h2>Contact Me</h2>
 
 <form method="post" action="/contact" name="contact">
-<input type="text" value="Name" id="name" name="name" class="light"><br>
-<input type="text" value="Email" id="email" name="email" class="light"><br>
-<textarea id="message" name="message" class="light">Your message</textarea><br>
-<input type="text" value="What are my initials?" id="init" name="init" class="light"><br>
+<input type="text" value="{{name}}" id="name" name="name" class="light"><br>
+<input type="text" value="{{email}}" id="email" name="email" class="light"><br>
+<textarea id="message" name="message" class="light">{{message}}</textarea><br>
+<input type="text" value="{{init}}" id="init" name="init" class="light"><br>
 <input type="submit" value="Send" id="send" name="send">
 </form>
 
-<p id="error"></p>
+<p id="error">{{error}}</p>
 
 </section>
