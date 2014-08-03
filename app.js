@@ -21,7 +21,7 @@ app.use(function(request, response, next) {
 
 // Serve static files first (JS, CSS, images)
 var oneMonth = 86400000 * 30;
-app.use('/static', static('/static', { maxAge: oneMonth }));
+app.use('/static', express.static(__dirname + '/static', { maxAge: oneMonth }));
 
 app.get('/', function(req, res) {
 	res.render('layout', {
