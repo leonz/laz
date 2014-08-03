@@ -82,10 +82,6 @@ function contact(req, res) {
 		res.render('layout', {
 			title: "Contact Me",
 			adj: "pages",
-			name: "Name",
-			email: "Email",
-			message: "Your message",
-			init: "What are my initials?",
 			partials: {
 				header: "header",
 				main: "contact",
