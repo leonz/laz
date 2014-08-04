@@ -157,5 +157,27 @@ input, textarea {
         color: red;
 }
 
+/** publish form **/
 
+#publish input {
+	font-size: 20px;
+}
+
+#publish #title, #publish #article, #publish #path {
+	width: 50%;
+}
+
+#publish #title {
+	font-weight: 600;
+}
+
+#publish #article {
+	height: 400px;
+	font-size: 20px;
+}
+
+#pulish #send {
+	width: 150px;
+	padding: 5px;
+}
 

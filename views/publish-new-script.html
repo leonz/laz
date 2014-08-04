@@ -1,0 +1,20 @@
+<script>
+(function() {
+
+	var title = document.getElementById('title');
+	var path = document.getElementById('path');
+
+	title.addEventListener('keyup', function() {
+		var url =  title.value
+				.toLowerCase().trim() // trim whitespace on sides
+				.replace(/[\.,-\/?<>#!$%\^&\*;:{}=\-_`~()]/g,"") // remove punctuation
+				.replace(/'/g,"")
+				.replace(/\s+/g, " ") // remove extra whitespace inside
+				.replace(/ /g, '-') // replace whitespace with hyphens
+		path.value = url;
+	
+	}, false);
+
+
+})();
+</script>
