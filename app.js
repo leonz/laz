@@ -44,7 +44,13 @@ app.use('/blog', function(req, res) {
 	blog(req, res);
 });
 
-app.use('/publish', function(req, res) {
+// authenticate for publish
+var auth = express.basicAuth(function(user, key, callback) {
+	var result = (user === process.env.USER && key === process.env.KEY);
+	callback(null, result);
+});
+
+app.use('/publish', auth, function(req, res) {
 	publish(req, res);
 });
 
