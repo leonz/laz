@@ -1,5 +1,16 @@
 function publish(req, res) {
-	if (req.path === '/new') {
+
+	// Start by testing authentication
+	
+	// TODO: if is not authenticated, redirect to /login
+	
+	// Login page
+	if (req.path === '/login') {
+
+	
+
+	// New Article form
+	} else if (req.path === '/new') {
 		res.render('layout', {
 			title: "New Article",
 			adj: "pages",
@@ -9,10 +20,13 @@ function publish(req, res) {
 				script: "publish-new-script"
 			}
 		});
+
+	// Publishing Center - process new articles and show existing articles
 	} else if (req.path === '/') {
 		var db = require('./dbauth.js')();
 		console.log('Database connection established.');
 		
+		// Returns a callback containing the next unique id
 		function getNextSequence(name, callback) {
 			db.collection('counters').findAndModify({
 				query: { _id: name },
@@ -28,13 +42,16 @@ function publish(req, res) {
 				callback(doc.seq);
 			});
 		}
-
+		
+		// Submit the new article to the database
 		if (req.method === 'POST') {
+	
 			var data = '';
 			req.on('data', function(datum) {
 				data += datum;
 			});
 
+			// Article data received, now process
 			req.on('end', function() {
 				var ent = require('ent');
 				var sanitize = require('sanitize-html');
@@ -43,13 +60,15 @@ function publish(req, res) {
 
 				var input = querystring.parse(data);
 
+				// Strip bad HTML while keeping good HTML with tags
 				var safeArticle = sanitize(ent.decode(input["article"]));
 			
+				// Calculate article reading time, where 1 min = 250 words
 				var wordCount = S(safeArticle).stripTags().s.split(" ").length;
 				var readTime = Math.round(wordCount / 250);
 					readTime = readTime > 1 ? readTime : 1;	
 
-
+				// Insert the article after getting the unique id
 				getNextSequence("postid", function(seq) {
 					var newArticle = {
 						_id: seq,
