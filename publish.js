@@ -12,17 +12,21 @@ function publish(req, res) {
 	} else if (req.path === '/') {
 		var db = require('./dbauth.js')();
 		console.log('Database connection established.');
-
-		function getNextSequence(name) {
-		   var ret = db.collection('counters').findAndModify(
-			  {
-			    query: { _id: name },
-			    update: { $inc: { seq: 1 } },
-			    new: true
-			  }
-		   );
-
-		   return ret.seq;
+		
+		function getNextSequence(name, callback) {
+			db.collection('counters').findAndModify({
+				query: { _id: name },
+				update: { $inc: { seq: 1 } },
+				new: true,
+			}, function(err, doc) {
+				console.log(doc);
+				if (err) {
+					console.log('Error: ', err);
+					callback(err);
+					return;
+				}
+				callback(doc.seq);
+			});
 		}
 
 		if (req.method === 'POST') {
@@ -39,31 +43,32 @@ function publish(req, res) {
 
 				var input = querystring.parse(data);
 
-
 				var safeArticle = sanitize(ent.decode(input["article"]));
 			
 				var wordCount = S(safeArticle).stripTags().s.split(" ").length;
 				var readTime = Math.round(wordCount / 250);
-					readTime = readTime > 1 ? readTime : 1;			
+					readTime = readTime > 1 ? readTime : 1;	
 
-				var newArticle = {
-					_id: getNextSequence("postid"),
-					title: input["title"],
-					article: safeArticle,
-					path: input["path"],
-					read: readTime,
-					visible: input["visible"] || 0
-				};
+
+				getNextSequence("postid", function(seq) {
+					var newArticle = {
+						_id: seq,
+						title: input["title"],
+						article: safeArticle,
+						path: input["path"],
+						read: readTime,
+						visible: input["visible"] || 0
+					};
 				
-				db.collection('articles').insert(newArticle, function(err, records) {
-					console.log("Article inserted into database: ", records);
-					if (err) {
-						console.log("Error: ", err);
-					}
-				});
+					db.collection('articles').insert(newArticle, function(err, records) {
+						console.log("Article inserted into database: ", records);
+						if (err) {
+							console.log("Error: ", err);
+						}
+					});
 
-			}); 
-			
+				}); 
+			});	
 		}
 
 		res.render('layout', {
