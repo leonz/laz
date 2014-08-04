@@ -14,7 +14,7 @@ function publish(req, res) {
 		console.log('Database connection established.');
 
 		function getNextSequence(name) {
-		   var ret = db.counters.findAndModify(
+		   var ret = db.collection('counters').findAndModify(
 			  {
 			    query: { _id: name },
 			    update: { $inc: { seq: 1 } },
@@ -55,7 +55,7 @@ function publish(req, res) {
 					visible: input["visible"] || 0
 				};
 				
-				db.articles.insert(newArticle, function(err, records) {
+				db.collection('articles').insert(newArticle, function(err, records) {
 					console.log("Article inserted into database: ", records);
 					if (err) {
 						console.log("Error: ", err);
