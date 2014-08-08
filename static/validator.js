@@ -51,7 +51,7 @@
 			// The form isn't right, don't send!
 			
 			// Set empty fields to 'invalid'
-			[name, email, message, init].map(function(element) {
+			[name, email, message, init].forEach(function(element) {
 				if (element.value === '') {
 					element.classList.add('invalid');
 				}
