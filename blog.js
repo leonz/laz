@@ -1,19 +1,35 @@
 function blog(req, res) {
-	res.write('You are now entering blog territory.\n');
-	res.end('View path (for use in articles): ' + req.path);
 
 	var db = require('./dbauth.js')();
 	console.log("Database connection established");
 
-	db.blog.find({"color":"red"}, function(err, records) {
-		if (err) {
-			console.log("Database error");
-			res.writeHead(500, {"Content-Type":"text/plain"});
-			res.end("500: Database Error");
-			return;
-		}
-		console.log(records);
-	});
+	// Blog front page - show latest articles
+	if (req.path === '/') {
+		res.end('Coming soon');
+	
+	} else {
+		var myPath = (req.path).substring(1); // strip leading slash
+		db.collection('articles').findOne({ path : myPath }, function(err, result) {
+			if (err) {
+				console.log("Database Error: ", err);
+				res.writeHead(500, {"Content-Type" : "text/plain"});
+				res.end("Database error: " + err);
+			}
+			
+			res.render('layout', {
+				title: result.title + " - Leon Zaruvinsky",
+				adjs: "pages",
+				article: result,
+				partials: {
+					header: "header",
+					main: "blog-article",
+				}
+			});
+		});
+	}
+		
+	
+
 
 }
 

@@ -9,6 +9,7 @@ function publish(req, res) {
 
 	
 
+
 	// New Article form
 	} else if (req.path === '/new') {
 		res.render('layout', {
@@ -90,34 +91,31 @@ function publish(req, res) {
 			});	
 		}
 
-		res.render('layout', {
-			title: "Publishing Center",
-			adj: "pages",
-			partials: {
-				header: "header",
-				main: "publish",
-				script: "publish-script"
+		// Blog control panel - Show existing articles
+		db.collection('articles').find(function(err, listOfArticles) {
+			if (err) {
+				console.log("Database Error: ", err);
+				res.write(500, {"Content-Type" : "text/plain"});
+				res.end("500 error: " + err);
 			}
+
+			res.render('layout', {
+				title: "Publishing Center",
+				adj: "pages",
+				articles: listOfArticles,
+				partials: {
+					header: "header",
+					main: "publish",
+					script: "publish-script"
+				}
+			});
 		});
 
 	} else {
 		res.writeHead(404, {"Content-Type" : "text/plain"});
 		res.end("404 error");
-	}		
 
-/*	var db = require('./dbauth.js')();
-	console.log("Database connection established");
-
-	db.blog.find({"color":"red"}, function(err, records) {
-		if (err) {
-			console.log("Database error");
-			res.writeHead(500, {"Content-Type":"text/plain"});
-			res.end("500: Database Error");
-			return;
-		}
-		console.log(records);
-	});
-*/
-}
+	}
+}		
 
 module.exports = publish
