@@ -3,7 +3,7 @@
 
 	var checkName = false, checkEmail = false, checkMessage = false, checkInit = false;	
 
-	// General purpose validator for form fields
+	// Checks if element is 'valid' using the validator function
 	function validate(element, validator) {
 		if (validator(element.value)) {
 			element.classList.add('valid');
@@ -47,21 +47,16 @@
 	}, false);
 
 	document.getElementById('send').addEventListener('click', function(e) {
-		if (checkName && checkEmail && checkMessage && checkInit) {
-			// All clear, send!
-		} else {
-			if (name.value === '') {
-				name.classList.add('invalid');
-			}
-			if (email.value === '') {
-				email.classList.add('invalid');
-			}
-			if (message.value === '') {
-				message.classList.add('invalid');
-			}
-			if (init.value === '') {
-				init.classList.add('invalid');
-			}
+		if (!(checkName && checkEmail && checkMessage && checkInit)) {
+			// The form isn't right, don't send!
+			
+			// Set empty fields to 'invalid'
+			[name, email, message, init].map(function(element) {
+				if (element.value === '') {
+					element.classList.add('invalid');
+				}
+			});
+
 			document.getElementById('error').innerHTML = "Hmm, something isn't right.  Try fixing the red boxes.";
 			e.preventDefault();
 		}
