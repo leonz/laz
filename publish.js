@@ -67,7 +67,8 @@ function publish(req, res) {
 				// Calculate article reading time, where 1 min = 250 words
 				var wordCount = S(safeArticle).stripTags().s.split(" ").length;
 				var readTime = Math.round(wordCount / 250);
-					readTime = readTime > 1 ? readTime : 1;	
+					readTime = readTime > 1 ? readTime : 1;	// readTime at least 1
+					readTime += readTime === 1 ? " minute" : " minutes";// minute vs minutes
 
 				// Insert the article after getting the unique id
 				getNextSequence("postid", function(seq) {
