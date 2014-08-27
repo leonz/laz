@@ -77,6 +77,7 @@ function publish(req, res) {
 						article: safeArticle,
 						path: input["path"],
 						read: readTime,
+						date: Date(),
 						visible: input["visible"] || 0
 					};
 				

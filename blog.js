@@ -5,10 +5,27 @@ function blog(req, res) {
 
 	// Blog front page - show latest articles
 	if (req.path === '/') {
-		res.end('Coming soon');
 	
-	} else {
+		db.collection('articles').find(function(err, listOfArticles) {
+                        if (err) {
+                                console.log("Database Error: ", err);
+                                res.write(500, {"Content-Type" : "text/plain"});
+                                res.end("500 error: " + err);
+                        }
+
+                        res.render('layout', {
+                                title: "Leon Zaruvinsky's Blog",
+                                adj: "blog",
+                                articles: listOfArticles,
+                                partials: {
+                                        header: "header",
+                                        main: "blog",
+                                }
+                        });
+                });
+
 	// Article page
+d	} else {
 		var myPath = (req.path).substring(1); // strip leading slash
 
 		db.collection('articles').findOne({ path : myPath }, function(err, result) {
@@ -22,6 +39,7 @@ function blog(req, res) {
 			if (result === null) {
 				console.log("Article not found for request path: " + myPath);
 				res.writeHead(404, {"Content-Type" : "text/plain"});
+				res.write("404 Error:\n");
 				res.end("Article not found for request path: " + myPath);
 				return;
 			}
