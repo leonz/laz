@@ -5,8 +5,9 @@ function blog(req, res) {
 
 	// Blog front page - show latest articles
 	if (req.path === '/') {
-	
-		db.collection('articles').find({visible: 1}).sort({'_id': -1}, function(err, listOfArticles) {
+
+		// Show articles where visible=1 in reverse ID order	
+		db.collection('articles').find({'visible': 1}).sort({'_id': -1}, function(err, listOfArticles) {
                         if (err) {
                                 console.log("Database Error: ", err);
                                 res.write(500, {"Content-Type" : "text/plain"});
