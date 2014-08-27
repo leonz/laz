@@ -78,7 +78,7 @@ function publish(req, res) {
 						path: input["path"],
 						read: readTime,
 						date: Date(),
-						visible: input["visible"] || 0
+						visible: parseInt(input["visible"]) || 0
 					};
 				
 					db.collection('articles').insert(newArticle, function(err, records) {
