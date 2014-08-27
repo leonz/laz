@@ -54,16 +54,16 @@ function publish(req, res) {
 
 			// Article data received, now process
 			req.on('end', function() {
-			//	var ent = require('ent');
-			//	var sanitize = require('sanitize-html');
+				var ent = require('ent');
+				var sanitize = require('sanitize-html');
 				var S = require('string');
 				var querystring = require('querystring');
 
 				var input = querystring.parse(data);
 
 				// Strip bad HTML while keeping good HTML with tags
-			//	var safeArticle = sanitize(ent.decode(input["article"]));
-			var safeArticle = input["article"];
+				var safeArticle = ent.encode(sanitize(input["article"]));
+			
 				// Calculate article reading time, where 1 min = 250 words
 				var wordCount = S(safeArticle).stripTags().s.split(" ").length;
 				var readTime = Math.round(wordCount / 250);

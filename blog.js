@@ -43,11 +43,16 @@ function blog(req, res) {
 				res.end("Article not found for request path: " + myPath);
 				return;
 			}
-	
+			var ent = require('ent');
+
+			// re-encode HTML entities
+			var fixedArticle = ent.decode(result.article);
+
 			res.render('layout', {
 				title: result.title + " - Leon Zaruvinsky",
 				adjs: "pages",
 				article: result,
+				content: fixedArticle,
 				partials: {
 					header: "header",
 					main: "blog-article",
