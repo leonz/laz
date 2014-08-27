@@ -103,8 +103,9 @@ function publish(req, res) {
 		db.collection('articles').find(function(err, listOfArticles) {
 			if (err) {
 				console.log("Database Error: ", err);
-				res.write(500, {"Content-Type" : "text/plain"});
+				res.writeHead(500, {"Content-Type" : "text/plain"});
 				res.end("500 error: " + err);
+				return;
 			}
 
 			res.render('layout', {
@@ -122,7 +123,6 @@ function publish(req, res) {
 	} else {
 		res.writeHead(404, {"Content-Type" : "text/plain"});
 		res.end("404 error");
-
 	}
 }		
 
