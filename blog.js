@@ -25,7 +25,7 @@ function blog(req, res) {
                 });
 
 	// Article page
-d	} else {
+	} else {
 		var myPath = (req.path).substring(1); // strip leading slash
 
 		db.collection('articles').findOne({ path : myPath }, function(err, result) {
