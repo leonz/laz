@@ -70,6 +70,12 @@ function publish(req, res) {
 					readTime = readTime > 1 ? readTime : 1;	// readTime at least 1
 					readTime += readTime === 1 ? " minute" : " minutes";// minute vs minutes
 
+				var months = ["January", "February", "March", "April", "May", "June", 
+				    "July", "August","September", "October", "November", "December"];
+				var date = new Date();
+				var dateStr = months[date.getMonth()] + ' ' + date.getDate() + ', '
+			        		+ date.getFullYear();
+
 				// Insert the article after getting the unique id
 				getNextSequence("postid", function(seq) {
 					var newArticle = {
@@ -78,7 +84,7 @@ function publish(req, res) {
 						article: safeArticle,
 						path: input["path"],
 						read: readTime,
-						date: Date().toLocaleFormat( "%B %e, %Y" ),
+						date: dateStr,
 						visible: parseInt(input["visible"]) || 0
 					};
 				
