@@ -2,13 +2,14 @@
 
 
 {{#articles}}
-<article id="{{_id}}">
+<article id="article_{{_id}}">
 <h2><a href="http://www.lzaruvinsky.com/blog/{{path}}">{{title}}</a></h2>
-<cite>Published on <date>{{date}}</date>.  Read Time: {{read}} minutes.</cite>
+<p class="meta">Published on <date>{{date}}</date>.  Read Time: {{read}} minutes.</p>
+
 {{{article}}}
+</article>
 
 {{/articles}}
-</ul>
 
 
 
