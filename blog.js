@@ -10,8 +10,9 @@ function blog(req, res) {
 		db.collection('articles').find({'visible' : 1}).sort({ '_id' : -1}, function(err, listOfArticles) {
                         if (err) {
                                 console.log("Database Error: ", err);
-                                res.write(500, {"Content-Type" : "text/plain"});
+                             //   res.write(500, {"Content-Type" : "text/plain"});
                                 res.end("500 error: " + err);
+				return;
                         }
 
                         res.render('layout', {
