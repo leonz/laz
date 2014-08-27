@@ -78,7 +78,7 @@ function publish(req, res) {
 						article: safeArticle,
 						path: input["path"],
 						read: readTime,
-						date: Date(),
+						date: Date().toLocaleFormat( "%B %e, %Y" ),
 						visible: parseInt(input["visible"]) || 0
 					};
 				
