@@ -12,6 +12,10 @@
 		"compression": "latest",
 		"hogan-express": "latest",
 		"mongojs": "latest",
+		"ent": "latest",
+		"string" : "latest",
+		"querystring" : "latest",
+		"sanitize-html" : "latest",
 		"sendgrid": "1.1.1"
 	},
 	"main": "app.js"
