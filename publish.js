@@ -70,6 +70,7 @@ function publish(req, res) {
 				if (input["password"] != process.env.SENDGRID_KEY) {
 					res.writeHead(403, {"Content-Type" : "text/plain"});
 					res.end("Sorry, you don't have permission to publish.);
+					return;
 				}
 					
 
