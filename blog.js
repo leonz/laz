@@ -14,6 +14,12 @@ function blog(req, res) {
                                 res.end("500 error: " + err);
 				return;
                         }
+			var fixedList = {};
+			listofArticles.forEach(function(element) {
+				var fixedArticle = require('ent').decode(element.article);
+				element.article = fixedArticle;
+				fixedList.push(element);
+			});
 
                         res.render('layout', {
                                 title: "Leon Zaruvinsky's Blog",
