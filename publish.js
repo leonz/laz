@@ -45,12 +45,13 @@ function publish(req, res) {
 		}
 		
 		// Submit the new article to the database
-		if (req.method === 'POST') {
+		if (req.method === 'POST' ) {
 	
 			var data = '';
 			req.on('data', function(datum) {
 				data += datum;
 			});
+
 
 			// Article data received, now process
 			req.on('end', function() {
@@ -60,6 +61,17 @@ function publish(req, res) {
 				var querystring = require('querystring');
 
 				var input = querystring.parse(data);
+				
+
+				/****************************************
+				 * For now, a rudimentary way to prevent randos from posting on my blog.
+				 * *************************************/
+
+				if (input["password"] != process.env.SENDGRID_KEY) {
+					res.writeHead(403, {"Content-Type" : "text/plain"});
+					res.end("Sorry, you don't have permission to publish.);
+				}
+					
 
 				// Strip bad HTML while keeping good HTML with tags
 				var safeArticle = ent.encode(sanitize(input["article"]));
