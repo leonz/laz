@@ -15,7 +15,7 @@ function blog(req, res) {
 				return;
                         }
 			var fixedList = {};
-			listofArticles.forEach(function(element) {
+			listOfArticles.forEach(function(element) {
 				var fixedArticle = require('ent').decode(element.article);
 				element.article = fixedArticle;
 				fixedList.push(element);
