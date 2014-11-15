@@ -60,20 +60,11 @@ app.get('/clickgame', function(req, res) {
 		res.end();
 	});
 });
-var qs = require('querystring');
-app.post('/clickgame/yo', function(req, res) {
-	var username = "";
-	req.on('data', function(data) {
-		username += data;
-	})
-	req.on('end', function() {
-		username = qs.parse(username).username;
-		if (username != "") {
-			io.sockets.emit("yo", username);
-		}
-		res.end()
-		return;
-	});
+app.get('/clickgame/yo', function(req, res) {
+	username = req.query.username;
+	if (username != "") {
+		io.sockets.emit("yo", username);
+	}
 	res.end()
 });
 
