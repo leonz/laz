@@ -53,7 +53,12 @@ app.use('/publish', function(req, res) {
 
 
 app.get('/clickgame', function(req, res) {
-	res.send('clickgame.html');
+	require('fs').readFile('views/clickgame.html', function(err, html) {
+		if (err) throw err;
+		res.writeHead(200, {"Content-Type": "text/html"});
+		res.write(html);
+		res.end();
+	});
 });
 
 app.post('/clickgame/yo', function(req, res) {
