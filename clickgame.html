@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<title>Click game!</title>
+</head>
+<body>
+
+<ul id="players">
+	<li id="banner">Waiting for players...</li>
+</ul>
+
+<ul id="yos">
+</ul>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+	var socket = io();
+	var players = 0;
+
+	socket.on('yo', function(user) {
+		if (players < 2) {
+			players++;
+			var players = document.getElementById('players');
+			players.innerHTML += '<li>Player ' + players + ': ' + user + '</li>';
+
+			if (players == 2) {
+				document.getElementById('banner').innerHTML = "Ready to play! Now accepting Yos.";
+			}
+		} else {
+			 var yos = document.getElementById('yos');
+			yos.innerHTML += '<li>' + user + ' just sent a Yo!</li>
+		}
+	}
+</script>
+</body>
+</html>

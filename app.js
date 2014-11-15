@@ -48,6 +48,17 @@ app.use('/publish', function(req, res) {
 	publish(req, res);
 });
 
+
+app.get('/clickgame', function(req, res) {
+	res.send('clickgame.html');
+});
+
+var io = require('sockets.io')(http)
+app.post('/clickgame/yo', function(req, res) {
+	if (req.body.username == null || req.body.uesrname == "") return;
+	io.sockets.emit("yo", req.body.username);
+});
+
 // If all else fails, 404
 app.use('/', function(req, res) {
 	res.writeHead(404, {"Content-Type":"text/plain"});
