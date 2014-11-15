@@ -3,7 +3,7 @@
 <head>
 <title>Click game!</title>
 <style>
-#banner{list-style-type:none;margin-left:0;padding-left:0;}
+#banner{font-size:1.2em;font-weight:bold;}
 </style>
 </head>
 <body>
@@ -18,15 +18,15 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
 	var socket = io();
-	var players = 0;
 
+	var player_count = 0;
 	socket.on('yo', function(user) {
-		if (players < 2) {
-			players++;
+		if (player_count < 2) {
+			player_count++;
 			var players = document.getElementById('players');
-			players.innerHTML += '<li>Player ' + players + ': ' + user + '</li>';
+			players.innerHTML += '<li>Player ' + player_count + ': ' + user + '</li>';
 
-			if (players == 2) {
+			if (player_count == 2) {
 				document.getElementById('banner').innerHTML = "Ready to play! Now accepting Yos.";
 			}
 		} else {

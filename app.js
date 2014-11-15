@@ -60,10 +60,21 @@ app.get('/clickgame', function(req, res) {
 		res.end();
 	});
 });
-
+var qs = require('querystring');
 app.post('/clickgame/yo', function(req, res) {
-	if (req.body.username == null || req.body.username == "") return;
-	io.sockets.emit("yo", req.body.username);
+	var username = "";
+	req.on('data', function(data) {
+		username += data;
+	})
+	req.on('end', function() {
+		username = qs.parse(username).username;
+		if (username != "") {
+			io.sockets.emit("yo", username);
+		}
+		res.end()
+		return;
+	});
+	res.end()
 });
 
 // If all else fails, 404
