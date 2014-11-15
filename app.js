@@ -7,6 +7,9 @@ var publish = require('./publish');
 
 var app = express();
 
+var http = require('http').Server(app)
+var io = require('sockets.io')(http)
+
 app.set('view engine', 'html');
 app.set('layout', 'layout');
 app.enable('view cache');
@@ -53,7 +56,6 @@ app.get('/clickgame', function(req, res) {
 	res.send('clickgame.html');
 });
 
-var io = require('sockets.io')(http)
 app.post('/clickgame/yo', function(req, res) {
 	if (req.body.username == null || req.body.uesrname == "") return;
 	io.sockets.emit("yo", req.body.username);
@@ -66,5 +68,5 @@ app.use('/', function(req, res) {
 });
 
 var port = process.env.PORT || 8000;
-app.listen(port); 
+http.listen(port); 
 console.log('Server started on port ' + port);
