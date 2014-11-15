@@ -7,8 +7,8 @@ var publish = require('./publish');
 
 var app = express();
 
-var http = require('http').Server(app)
-var io = require('sockets.io')(http)
+var http = require('http').createServer(app);
+var io = require('socket.io')(http);
 
 app.set('view engine', 'html');
 app.set('layout', 'layout');
