@@ -62,7 +62,7 @@ app.get('/clickgame', function(req, res) {
 });
 
 app.post('/clickgame/yo', function(req, res) {
-	if (req.body.username == null || req.body.uesrname == "") return;
+	if (req.body.username == null || req.body.username == "") return;
 	io.sockets.emit("yo", req.body.username);
 });
 
